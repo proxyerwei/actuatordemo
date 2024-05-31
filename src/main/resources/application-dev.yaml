@@ -1,0 +1,13 @@
+server:
+  port: 9000
+management:
+  endpoints:
+    web:
+      base-path: /mymanagement
+  server:
+    port: 10011
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true

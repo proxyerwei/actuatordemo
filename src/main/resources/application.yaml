@@ -1,3 +1,11 @@
 server:
   port: 9000
 
+spring:
+  profiles:
+    active: dev
+
+my:
+  user:
+    username: hello
+    password: world

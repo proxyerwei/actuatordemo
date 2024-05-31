@@ -4,6 +4,7 @@ import com.xywei.springdemo.actuatordemo.dto.BaseResult;
 import com.xywei.springdemo.actuatordemo.dto.ResultEnum;
 import com.xywei.springdemo.actuatordemo.entity.User;
 import com.xywei.springdemo.actuatordemo.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -12,6 +13,13 @@ import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Value("${my.user.username}")
+    private String myUsername;
+
+    @Value("${my.user.password}")
+    private String myPassword;
+
     @Override
     public BaseResult<List<User>> findUserById(String userId) {
         BaseResult result = new BaseResult();
@@ -20,7 +28,7 @@ public class UserServiceImpl implements UserService {
             result.setResultMessage(ResultEnum.EMPTY.getMessage());
             return result;
         }
-        String userStrs = UUID.randomUUID().toString();
+        String userStrs = UUID.randomUUID().toString() + myUsername + ":" + myPassword;
         List<User> users = List.of(new User(userId + ":" + userStrs, "username:" + userStrs));
         result.setResultData(users);
         result.setResultCode(ResultEnum.SUCCESS.getCode());

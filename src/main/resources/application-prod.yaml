@@ -1,0 +1,9 @@
+server:
+  port: 9000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  server:
+    address: 127.0.0.1
